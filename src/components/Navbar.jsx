@@ -1,9 +1,14 @@
+'use client'
 import { Button } from "@heroui/react";
 import React from "react";
 import ActiveNavLink from "./ActiveNavLink";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { NavbarDropDown } from "./NavbarDropDown";
 
 const Navbar = () => {
+  const {data:session} = authClient.useSession()
+  const user = session?.user
   return (
     <div className="bg-[#2D2D44] p-3">
       <nav className="text-white flex flex-col gap-5 lg:flex-row lg:gap-0 items-center justify-between container mx-auto">
@@ -29,7 +34,10 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="flex items-center gap-3">
-          <Link href={"/login"}>
+          {user ? <>
+           <NavbarDropDown />
+          </> : <>
+           <Link href={"/login"}>
             <Button variant="outline" className="text-white">
               Login
             </Button>
@@ -37,6 +45,7 @@ const Navbar = () => {
           <Link href={'/register'}><Button variant="outline" className="text-white">
             Register
           </Button></Link>
+          </>}
         </div>
       </nav>
     </div>
