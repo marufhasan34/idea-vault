@@ -7,10 +7,13 @@ import {
   Form,
   Input,
   Label,
+  Separator,
   TextField,
 } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import {Icon} from "@iconify/react";
+import Link from "next/link";
 
 const LoginPage = () => {
     const router = useRouter();
@@ -33,11 +36,17 @@ const LoginPage = () => {
     }
   };
 
+  const handleGoogleLogin = async() => {
+    await authClient.signIn.social({
+      provider: 'google'
+    })
+  }
+
   return (
-    <div>
+    <div className="w-96 card card-body shadow-2xl mx-auto my-20">
       <Form
         onSubmit={onSubmit}
-        className="flex w-96 flex-col gap-4 card card-body shadow-2xl mx-auto my-20"
+        className="flex  flex-col gap-4 "
       >
         <TextField
           isRequired
@@ -83,6 +92,17 @@ const LoginPage = () => {
           Login
         </Button>
       </Form>
+       <p className="text-center text-gray-500">Do not have an account <Link className="text-blue-500" href={'/register'}>Register</Link> </p>
+      <div className="flex justify-center items-center">
+        <Separator />
+        <div className="whitespace-nowrap text-gray-500">Or Sign In with</div>
+        <Separator />
+      </div>
+
+      <Button onClick={handleGoogleLogin} className="w-full" variant="tertiary">
+        <Icon icon="devicon:google" />
+        Sign in with Google
+      </Button>
     </div>
   );
 };

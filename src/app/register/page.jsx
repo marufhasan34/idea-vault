@@ -3,6 +3,7 @@ import {Button, Description, FieldError, Form, Input, Label, TextField} from "@h
 import { authClient } from "@/lib/auth-client"
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const RegisterPage = () => {
   const onSubmit = async(e) => {
@@ -23,8 +24,8 @@ const RegisterPage = () => {
     }
   }
     return (
-        <div>
-             <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4 card card-body shadow-2xl mx-auto my-20" >
+        <div className="w-96 card card-body shadow-2xl mx-auto my-20">
+             <Form onSubmit={onSubmit} className="flex  flex-col gap-4" >
       <TextField
         isRequired
         name="name"
@@ -86,6 +87,7 @@ const RegisterPage = () => {
         </Button>
       
     </Form>
+    <p className="text-center text-gray-500">Already have an account <Link className="text-blue-500" href={'/login'}>Register</Link> </p>
         </div>
     );
 };
