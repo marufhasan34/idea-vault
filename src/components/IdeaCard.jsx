@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import {ThumbsUpFill,Eye} from '@gravity-ui/icons';
 import { Button } from "@heroui/react";
 const IdeaCard = ({ idea }) => {
   const {

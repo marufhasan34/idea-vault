@@ -1,7 +1,11 @@
 import Banner from "@/components/Banner";
+import FeaturedIdeas from "@/components/FeaturedIdeas";
 
 export default function Home() {
   return (
-    <Banner />
+    <div>
+      <Banner />
+    <FeaturedIdeas />
+    </div>
   );
 }
