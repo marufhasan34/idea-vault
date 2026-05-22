@@ -31,6 +31,8 @@ const LoginPage = () => {
       router.push("/");
     }
 
+    
+
     if (error) {
       toast.error("Login Failed please try again later!");
     }
